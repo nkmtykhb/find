@@ -1,0 +1,25 @@
+<% @teacher.errors.full_messages.each do |message| %>
+<p><%= message %></p>
+<% end %>
+
+<%= form_tag("/users/te_create") do%>
+  <p>ユーザー名※</p>
+  <input name="name" value=<%=@teacher.name %>>
+
+  <p>メールアドレス※</p>
+  <input name="email" value=<%=@teacher.email %>>
+
+  <p>学習分野</p>
+  <input name="field" value=<%=@teacher.field %>>
+
+  <p>学校</p>
+  <input name="school" value=<%=@teacher.school %>>
+
+  <p>パスワード※</p>
+  <input name="password"type="password",value="<%= @teacher.password %>">
+
+  <p>※は必須</p>
+
+  <input type="submit" value="新規登録">
+
+<%end%>

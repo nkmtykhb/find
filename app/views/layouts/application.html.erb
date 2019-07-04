@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Find</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+        <%= link_to("find", "/") %>
+      <ul">
+      <% if Student.find_by(id: session[:user_id])%>
+          <% current_user=Student.find_by(id: session[:user_id])%>
+        <li>
+          <%= link_to(current_user.name,"/users/#{current_user.id}") %>
+        </li>
+        <li>
+          <%= link_to("全国の教授に質問する", "/posts/question") %>
+        </li>
+        <li>
+          <%= link_to("みんなの質問", "/posts/index") %>
+        </li>
+        <li>
+          <%= link_to("教授を探す", "/users/teacher") %>
+        </li>
+        <li>
+          <%=link_to("ログアウト","/logout",{method: :post})%>
+        </li>
+
+      <% elsif %>
+          <% current_user=Teacher.find_by(id: session[:user_id])%>
+        <li>
+          <%= link_to(current_user.name,"/users/#{current_user.id}") %>
+        </li>
+        <li>
+          <%= link_to("全国の学生の質問に答える", "/posts/index") %>
+        </li>
+        <li>
+          <%= link_to("学生を探す", "/users/student") %>
+        </li>
+        <li>
+          <%=link_to("ログアウト","/logout",{method: :post})%>
+        </li>
+
+      <% else %>
+
+        <li>
+          <%= link_to("findとは", "/about") %>
+        </li>
+        <li>
+          <%= link_to("新規登録", "/signup") %>
+        </li>
+        <li>
+           <%= link_to("ログイン", "/login") %>
+        </li>
+
+        <%end%>
+      </ul>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

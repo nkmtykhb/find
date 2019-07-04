@@ -1,0 +1,50 @@
+<%if @user.id < 1000 %>
+  <img src="<%= "/user_images/#{@user.image_name}"%>">
+  <h2>学生名　<%= @user.name %></h2>
+  <%if @user.message.present?%>
+    <p>自己紹介　<%= @user.message %></p>
+  <%end%>
+  メールアドレス　<a href="mailto:<%= @user.email %>?subject=feedback"><%= @user.email %></a>
+  <%if @user.laboratory.present?%>
+    <p>研究室名　<%= @user.laboratory %></p>
+  <%end%>
+  <%if @user.field.present?%>
+    <p>学習分野　<%= @user.field %></p>
+  <%end%>
+  <%if @user.school.present?%>
+    <p>所属学校　<%= @user.school %></p>
+  <%end%>
+  <%if @user.url.present?%>
+  url　<a href="<%= @user.url %>" target="_blank"><%= @user.url %></a>
+  <%end%>
+  <p></p>
+  <% if @user.id==@current_user.id%>
+      <%= link_to("編集", "/users/#{@user.id}/st_edit") %>
+  <%end%>
+<%else%>
+  <img src="<%= "/user_images/#{@user.image_name}"%>">
+  <h2>教授名　<%= @user.name %></h2>
+  <%if @user.message.present?%>
+    <p>自己紹介　<%= @user.message %></p>
+  <%end%>
+  メールアドレス　<a href="mailto:<%= @user.email %>?subject=feedback"><%= @user.email %></a>
+  <%if @user.laboratory.present?%>
+    <p>研究室名　<%= @user.laboratory %></p>
+  <%end%>
+  <%if @user.field.present?%>
+    <p>専門分野　<%= @user.field %></p>
+  <%end%>
+  <%if @user.school.present?%>
+    <p>所属学校　<%= @user.school %></p>
+  <%end%>
+  <%if @user.url.present?%>
+  url　<a href="<%= @user.url %>" target="_blank"><%= @user.url %></a>
+  <%end%>
+  <%if @user.equipment.present?%>
+  <p>持っている機材　<%= @user.equipment %></p>
+  <%end%>
+
+  <% if @user.id==@current_user.id%>
+      <%= link_to("編集", "/users/#{@user.id}/te_edit") %>
+  <%end%>
+<%end%>

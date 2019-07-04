@@ -1,0 +1,14 @@
+<% @question.errors.full_messages.each do |message| %>
+<p><%= message %></p>
+<% end %>
+<h2>質問する</h2>
+<%=form_tag("/posts/qs_create",{multipart:true})do%>
+  <p>質問内容</p>
+  <textarea name="content" rows="8" cols="80"></textarea>
+
+  <p>画像添付</p>
+  <input type="file" name="image">
+
+  <input type="submit" value="質問する">
+
+<%end%>

@@ -1,0 +1,28 @@
+<% @student.errors.full_messages.each do |message| %>
+<%= message %>
+<% end %>
+
+<%=form_tag("/users/#{@student.id}/st_update",{multipart:true})do%>
+
+<p>ユーザー名</p>
+  <input name="name" value=<%=@student.name %>>
+<p>ユーザー画像</p>
+  <input type="file" name="image">
+<p>メールアドレス</p>
+  <input name="email" value=<%=@student.email %>>
+<p>学習分野</p>
+  <input name="field" value=<%=@student.field %>>
+<p>学校</p>
+  <input name="school" value=<%=@student.school %>>
+<p>url</p>
+    <input name="url" value=<%=@student.url %>>
+<p>研究室名</p>
+  <input name="laboratory" value=<%=@student.laboratory %>>
+<p>自己紹介</p>
+  <textarea name="message" rows="8" cols="80">
+    <%=@student.message %>
+  </textarea>
+
+  <input type="submit" value="保存">
+
+<%end%>

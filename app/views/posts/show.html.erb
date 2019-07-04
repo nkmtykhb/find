@@ -1,0 +1,22 @@
+<%student=Student.find_by(id: @question.student_id)%>
+<a href="/users/<%=student.id%>"><img src="<%= "/user_images/#{student.image_name}"%>"></a>
+<p>質問内容　<%= @question.content %></p>
+<%if @question.image_name%>
+<img src="<%= "/question_images/#{@question.image_name}"%>">
+<%end%>
+<%if @current_user.id.to_i > 1000%>
+  <%=form_tag("/posts/#{@question.id}/as_create",method: :post)do%>
+    <p>回答</p>
+    <textarea name="content" rows="8" cols="80"></textarea>
+
+    <input type="submit" value="回答する">
+  <%end%>
+<%end%>
+<h1>回答一覧</h1>
+<% @answers.each do |answer| %>
+<% teacher=Teacher.find_by(id: answer.teacher_id)%>
+<a href="/users/<%=teacher.id%>"><img src="<%= "/user_images/#{teacher.image_name}" %>"></a>
+<%= teacher.name%>　　
+<%= answer.content %>
+<p></p>
+<%end%>

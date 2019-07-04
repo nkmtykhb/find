@@ -1,0 +1,22 @@
+<h1>学生を探す</h1>
+<%= form_tag("",:method => 'get') do %>
+  <%= text_field_tag :search1 %>
+  <%= submit_tag '名前で検索', :name => nil %>
+<% end %>
+<%= form_tag("",:method => 'get') do %>
+  <%= text_field_tag :search2 %>
+  <%= submit_tag '学校で検索', :name => nil %>
+<% end %>
+<%= form_tag("",:method => 'get') do %>
+  <%= text_field_tag :search3 %>
+  <%= submit_tag '学習分野で検索', :name => nil %>
+<% end %>
+  <% if @students.empty?%>
+    <p>検索した結果、該当する人はいませんでした</p>
+  <%end%>
+    <% @students.each do |student| %>
+
+      <img src="<%= "/user_images/#{student.image_name}" %>">
+          <%= link_to(student.name,"/users/#{student.id}") %>
+          <p>--------------------------</p>
+    <%end %>
